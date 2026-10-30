@@ -1,0 +1,22 @@
+using Banking.Console.Models;
+
+namespace Banking.Console.Services;
+
+public class AccountQueryService
+{
+  private readonly IReadOnlyList<Account> _accounts;
+
+  public AccountQueryService(IReadOnlyList<Account> accounts)
+  {
+    _accounts = accounts;
+  }
+
+  public async Task<Account?> FindAccountAsync(string accountNumber)
+  {
+    await Task.Delay(2000);
+
+    return _accounts.FirstOrDefault(
+      acc => acc.AccountNumber == accountNumber
+    );
+  }
+}
